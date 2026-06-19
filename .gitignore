@@ -1,20 +1,14 @@
-# React
-frontend/node_modules/
-frontend/dist/
-
-# Django
-backend/venv/
-backend/__pycache__/
-backend/db.sqlite3
-backend/media/
-
-# Environment files
-.env
-*.env
+# Python virtual environment
+venv/
 
 # Python cache
-*.pyc
 __pycache__/
+*.pyc
 
-# Logs
-*.log
+# Node
+node_modules/
+dist/
+build/
+
+# env files
+.env
