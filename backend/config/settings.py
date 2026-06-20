@@ -7,9 +7,9 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = ["codementor-fullstack-web-application.onrender.com",
     "localhost",
-    "127.0.0.1",
+    "127.0.0.1"
 ]
 
 INSTALLED_APPS = [
