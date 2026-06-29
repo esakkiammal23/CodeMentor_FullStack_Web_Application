@@ -215,7 +215,8 @@ export default function Test({ user }) {
             {result.cert_generated && result.pdf_url && (
               <div style={{ marginBottom: 12 }}>
                 
-               <a   href={`http://localhost:8000${result.pdf_url}`}
+              <a
+  href={`https://codementor-fullstack-web-application.onrender.com${result.pdf_url}`}
                   target="_blank" rel="noreferrer"
                   className="btn btn-success"
                   style={{ display: 'inline-block' }}

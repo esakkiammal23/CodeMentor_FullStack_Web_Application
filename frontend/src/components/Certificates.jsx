@@ -38,7 +38,8 @@ export default function Certificates() {
               {cert.email_sent && <p style={{ color: '#6ee7b7', fontSize: '0.82rem' }}>✉️ Sent to your email</p>}
             </div>
             <div>
-              <a href={`http://localhost:8000${cert.pdf_url}`} target="_blank"
+              <a
+  href={`https://codementor-fullstack-web-application.onrender.com${cert.pdf_url}`} target="_blank"
                 rel="noreferrer" className="btn btn-primary">
                 📄 Download PDF
               </a>
