@@ -1,4 +1,5 @@
 import requests
+import os
 import json
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -590,20 +591,21 @@ At the end, ask:
 
     try:
         response = requests.post(
-            "https://api.groq.com/openai/v1/chat/completions",
-            headers={
-                "Authorization": "Bearer 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",
-                "Content-Type": "application/json"
-            },
-            json={
-                "model": "llama-3.1-8b-instant",
-                "messages": [
-                    {"role": "system", "content": prompt}
-                ],
-                "temperature": 0.7
-            },
-            timeout=20
-        )
+    "https://api.groq.com/openai/v1/chat/completions",
+    headers={
+        "Authorization": f"Bearer {os.getenv('GROQ_API_KEY')}",
+        "Content-Type": "application/json"
+    },
+    json={
+        "model": "llama-3.1-8b-instant",
+        "messages": [
+            {"role": "system", "content": prompt}
+        ],
+        "temperature": 0.7
+    },
+    timeout=20
+)
+        
 
         # Debug
         print("STATUS:", response.status_code)
@@ -651,19 +653,21 @@ def ask_doubt(request):
     print("QUESTION:", question)
     answer = None
 
+
+
     try:
         response = requests.post(
-            "https://api.groq.com/openai/v1/chat/completions",
-            headers={
-                "Authorization": "Bearer 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",
-                "Content-Type": "application/json"
-            },
-            json={
-                "model": "llama-3.1-8b-instant",
-                "messages": [
-                    {
-                        "role": "system",
-                        "content": f"""
+    "https://api.groq.com/openai/v1/chat/completions",
+    headers={
+        "Authorization": f"Bearer {os.getenv('GROQ_API_KEY')}",
+        "Content-Type": "application/json"
+    },
+    json={
+        "model": "llama-3.1-8b-instant",
+        "messages": [
+            {
+                "role": "system",
+                "content": f"""
 You are a smart AI tutor like ChatGPT.
 
 RULES:
@@ -678,16 +682,17 @@ Language: {topic.programming_language}
 
 {lang_instructions.get(interface_lang, lang_instructions['english'])}
 """
-                    },
-                    {
-                        "role": "user",
-                        "content": f"My doubt is: {question}"
-                    }
-                ],
-                "temperature": 0.7
             },
-            timeout=20
-        )
+            {
+                "role": "user",
+                "content": f"My doubt is: {question}"
+            }
+        ],
+        "temperature": 0.7
+    },
+    timeout=20
+)
+        
 
         if response.status_code == 200:
             answer = response.json()['choices'][0]['message']['content']
