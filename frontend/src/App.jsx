@@ -40,7 +40,7 @@ export default function App() {
   return (
     <Router>
 
-      {user && <Navbar user={user} onLogout={handleLogout} />}
+       {user && <Navbar user={user} onLogout={handleLogout} />} 
 
       <Routes>
 
